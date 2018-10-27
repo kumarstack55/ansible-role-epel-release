@@ -1,0 +1,21 @@
+---
+- name: Ensure package installed
+  yum:
+    name: epel-release
+
+- name: Ensure configure files exists
+  template:
+    dest: "{{ item.dest }}"
+    src: "{{
+        item.src
+        | default(
+            item.dest
+            | regex_replace('/\\.', '/dot.')
+            | regex_replace('^/', 'el7/')
+          ) + '.j2'
+      }}"
+    force: yes
+    backup: yes
+  loop:
+    - dest: /etc/yum.repos.d/epel.repo
+    - dest: /etc/yum.repos.d/epel-testing.repo
