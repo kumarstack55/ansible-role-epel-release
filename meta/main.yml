@@ -1,7 +1,7 @@
 galaxy_info:
   author: kumarstack55
   description: epel-release
-  license: GPL
+  license: GPLv2
   min_ansible_version: 1.2
   platforms:
     - name: EL
